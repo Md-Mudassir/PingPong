@@ -2,7 +2,7 @@
 let canvas = document.querySelector("canvas");
 
 canvas.width = innerWidth;
-canvas.height = innerHeight;
+canvas.height = innerHeight-10;
 
 let c = canvas.getContext("2d");
 
