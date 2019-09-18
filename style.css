@@ -9,7 +9,7 @@
  #logo,#button{
     position:absolute;
      top:15%; 
-     left:45%;
+     left:47%;
      }
      #button{
          margin-top:15%;
@@ -19,7 +19,7 @@
     background: rgba(255, 255, 255, 0.1);
     border: 1.5px solid  black;
     border-radius: 30px;
-    color:cornflowerblue;
+    color:darkorange;
 }
 #instruction{
    margin-top: 1em;
@@ -27,4 +27,13 @@
 #instruction{
     top: 2%;
     color: chocolate
+}
+#start,#rules{
+    margin-top:10%;
+    margin-left:40%;
+    font-size: 1.5em;;
+}
+h5{
+    width: 6em;
+    height: 1em;
 }
