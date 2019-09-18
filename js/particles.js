@@ -1,3 +1,4 @@
+
 let canvas = document.querySelector("canvas");
 
 canvas.width = innerWidth;
@@ -55,3 +56,4 @@ function animate() {
   }
 }
 animate();
+
