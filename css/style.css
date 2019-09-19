@@ -19,7 +19,7 @@
     background: rgba(255, 255, 255, 0.1);
     border: 1.5px solid  black;
     border-radius: 30px;
-    color:darkorange;
+    color: chocolate;
 }
 #instruction{
    margin-top: 1em;
@@ -34,6 +34,6 @@
     font-size: 1.5em;;
 }
 h5{
-    width: 6em;
+    width: 7em;
     height: 1em;
 }
