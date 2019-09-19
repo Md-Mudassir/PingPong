@@ -40,9 +40,7 @@ h5{
     width: 7em;
     height: 1em;
 }
-#canvas-wrap{
-  position: relative;
-}
+
 body {
   margin: 0%;
   font-family: "Playfair Display", serif;
