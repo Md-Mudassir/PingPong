@@ -1,3 +1,4 @@
+//getting the canvas id & setting the screen size
 const canvas = document.querySelector("#pong");
 canvas.width = innerWidth;
 canvas.height = innerHeight;
@@ -7,6 +8,8 @@ class Vec {
     this.x = x;
     this.y = y;
   }
+
+  //adjust the ball speed
   get len() {
     return Math.sqrt(this.x * this.x + this.y * this.y);
   }
@@ -22,6 +25,8 @@ class Rect {
     this.pos = new Vec(0, 0);
     this.size = new Vec(x, y);
   }
+
+  //getting the position values to evaluate the position for bouncing the ball when it hits the corners
   get left() {
     return this.pos.x - this.size.x / 2;
   }
@@ -38,6 +43,7 @@ class Rect {
 
 class Ball extends Rect {
   constructor() {
+    //inheriting the super class properties for the ball
     super(40, 40);
     this.vel = new Vec();
   }
@@ -45,6 +51,7 @@ class Ball extends Rect {
 
 class Player extends Rect {
   constructor() {
+    //inheriting the super class properties for the bars
     super(40, 200);
     this.vel = new Vec();
     this.score = 0;
@@ -62,14 +69,17 @@ class Pong {
     this._canvas = canvas;
     this._context = canvas.getContext("2d");
 
-    this.initialSpeed = 250 * 4;
+    //initial speed of the ball
+    this.initialSpeed = 500;
 
     this.ball = new Ball();
 
     this.players = [new Player(), new Player()];
 
+    //initializing the 2 players position and aligning them in middle
     this.players[0].pos.x = 40;
     this.players[1].pos.x = this._canvas.width - 40;
+    //middle
     this.players.forEach(p => (p.pos.y = this._canvas.height / 2));
 
     let lastTime = null;
@@ -81,7 +91,7 @@ class Pong {
       lastTime = millis;
       requestAnimationFrame(this._frameCallback);
     };
-
+    //displaying score using pixels on canvas
     this.CHAR_PIXEL = 15;
     this.CHARS = [
       "111101101101111",
@@ -115,6 +125,8 @@ class Pong {
     this._context.fillStyle = "white";
     this._context.fillRect(0, 0, this._canvas.width, this._canvas.height);
   }
+
+  //when the ball hits the bar repel the velocity of ball
   collide(player, ball) {
     if (
       player.left < ball.right &&
@@ -123,11 +135,14 @@ class Pong {
       player.bottom > ball.top
     ) {
       ball.vel.x = -ball.vel.x * 1.05;
+      //changing the angle of the ball when it hits the bar
       const len = ball.vel.len;
       ball.vel.y += player.vel.y * 0.2;
       ball.vel.len = len;
     }
   }
+
+  //drawing the ball and bars
   draw() {
     this.clear();
 
@@ -136,6 +151,8 @@ class Pong {
 
     this.drawScore();
   }
+
+  //drawing the bars
   drawRect(rect) {
     this._context.fillStyle = "black";
     this._context.fillRect(rect.left, rect.top, rect.size.x, rect.size.y);
@@ -147,19 +164,26 @@ class Pong {
       const chars = player.score.toString().split("");
       const offset =
         align * (index + 1) - (cw * chars.length) / 2 + this.CHAR_PIXEL / 2;
+      //drawing the score image on canvas
       chars.forEach((char, pos) => {
         this._context.drawImage(this.CHARS[char | 0], offset + pos * cw, 20);
       });
     });
   }
+
+  //if ball is idle then add velocity to it and play
   play() {
     const b = this.ball;
     if (b.vel.x === 0 && b.vel.y === 0) {
+      //randomly move the ball on click
       b.vel.x = 200 * (Math.random() > 0.5 ? 1 : -1);
       b.vel.y = 200 * (Math.random() * 2 - 1);
+      //adjusting the speeed of the ball
       b.vel.len = this.initialSpeed;
     }
   }
+
+  //when the ball hits the boundries set its velocity to 0 and position it in middle
   reset() {
     const b = this.ball;
     b.vel.x = 0;
@@ -188,6 +212,7 @@ class Pong {
       ball.vel.y = -ball.vel.y;
     }
 
+    //right bar follows the position of the bar
     this.players[1].pos.y = ball.pos.y;
 
     this.players.forEach(player => {
