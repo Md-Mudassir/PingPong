@@ -102,6 +102,7 @@ h5 {
       
   }
 }
+/* media query for index page */
 @media only screen  and (max-width:600px){
   #logo,#rules,#button{
     top: 15%;
