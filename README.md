@@ -1,6 +1,9 @@
 # PingPong
 A PingPong game where you will be competing with your own computer so good luck trying to beat your own computer in the game and its based on HTML5 Canvas, CSS, Bootstrap 4, ES6 Concepts.
 
+# Walkthroough Video
+[Watch Here]https://youtu.be/oi8I6qbrQaY
+
 # Authors
 [Mohammed Mudassir](https://github.com/Md-Mudassir), 
 [Ranjith Kumar C](https://github.com/ranjithckumar)
